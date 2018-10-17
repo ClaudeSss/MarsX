@@ -1,17 +1,22 @@
 package com.winning.mars_security.core;
 
 import android.app.Activity;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.winning.mars_security.core.strategy.mail.MailWorker;
 import com.winning.mars_security.util.PermisionUtils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.work.Constraints;
 import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
+import androidx.work.WorkStatus;
 
 public class DirectiveManager {
     private static DirectiveManager mInstance;
@@ -24,7 +29,7 @@ public class DirectiveManager {
         PermisionUtils.verifyDeviceAdminPermissions(context);
 
         ActionData.init();
-        initMailWorker();
+        startMailWorker();
     }
     public static DirectiveManager getInstance(Context context,String appkey){
         if (mInstance == null){
@@ -36,6 +41,17 @@ public class DirectiveManager {
         }
         return mInstance;
     }
+    private void startMailWorker(){
+        // 获取到LiveData然后监听数据变化
+        WorkManager.getInstance().getStatusesByTag(mAppkey).observe((LifecycleOwner) getContext(),new Observer<List<WorkStatus>>() {
+            @Override
+            public void onChanged(@Nullable List<WorkStatus> workStatuses) {
+                if (workStatuses == null){
+                    initMailWorker();
+                }
+            }
+        });
+    }
     private void initMailWorker(){
         Constraints jobConstraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
@@ -46,6 +62,7 @@ public class DirectiveManager {
                 new PeriodicWorkRequest.Builder(MailWorker.class, PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS,
                         TimeUnit.MILLISECONDS)
                         .setConstraints(jobConstraints)
+                        .addTag(mAppkey)
                         .build();
 
         WorkManager.getInstance().enqueue(jobWorkManager);

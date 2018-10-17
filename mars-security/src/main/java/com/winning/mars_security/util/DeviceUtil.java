@@ -2,6 +2,7 @@ package com.winning.mars_security.util;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -13,7 +14,6 @@ import android.os.StatFs;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -67,7 +67,7 @@ public class DeviceUtil {
     }
 
 
-    public static String getMyUUID(AppCompatActivity context) {
+    public static String getMyUUID(Activity context) {
         String uniqueId = null;
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -108,7 +108,7 @@ public class DeviceUtil {
         }
     }
 
-    public static boolean notHasBlueTooth(AppCompatActivity context) {
+    public static boolean notHasBlueTooth(Activity context) {
 
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
 

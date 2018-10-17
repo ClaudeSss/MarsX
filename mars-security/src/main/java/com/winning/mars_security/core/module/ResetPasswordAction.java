@@ -6,7 +6,7 @@ import com.winning.mars_security.util.PermisionUtils;
 
 import winning.com.mars_annotation.Action;
 /**
- * 重置密码
+ * 重置锁屏密码
  * @author sharkchao
  * password
  */
