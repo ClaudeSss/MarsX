@@ -98,7 +98,7 @@ public class PermisionUtils {
     }
 
 
-    public static void showLockScreenMessageDialog( final Context context,ComponentName componentName){
+    public static void showLockScreenMessageDialog(final Context context, final ComponentName componentName){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("权限");
         builder.setMessage("系统锁屏等需要获取设备管理器权限");

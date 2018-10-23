@@ -43,10 +43,10 @@ public class DirectiveManager {
     }
     private void startMailWorker(){
         // 获取到LiveData然后监听数据变化
-        WorkManager.getInstance().getStatusesByTag(mAppkey).observe((LifecycleOwner) getContext(),new Observer<List<WorkStatus>>() {
+        WorkManager.getInstance().getStatusesByTag(mAppkey).observe((LifecycleOwner)getContext(),new Observer<List<WorkStatus>>() {
             @Override
             public void onChanged(@Nullable List<WorkStatus> workStatuses) {
-                if (workStatuses == null){
+                if (workStatuses == null || workStatuses.size() == 0){
                     initMailWorker();
                 }
             }

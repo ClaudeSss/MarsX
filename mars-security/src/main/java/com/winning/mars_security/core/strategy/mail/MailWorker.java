@@ -1,6 +1,5 @@
 package com.winning.mars_security.core.strategy.mail;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.sun.mail.imap.IMAPFolder;
@@ -22,7 +21,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.search.FlagTerm;
 
 import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
 /**
  * @author sharkchao
@@ -35,13 +33,13 @@ public class MailWorker extends Worker{
     private static final String EMAIL_PASSWORD = "15235174661lcc1"; // 邮箱授权码(允许第三方访问)
     private static final String FORM_EMAIL = "\" 哥只是个传说 \"<827623353@qq.com>";
 
-    public MailWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-        super(context, workerParams);
+    public MailWorker() {
     }
 
     @NonNull
     @Override
     public Result doWork() {
+        System.out.println("测试"+System.currentTimeMillis());
         getImapEmail();
         return Result.SUCCESS;
     }
