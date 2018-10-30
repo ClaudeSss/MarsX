@@ -3,7 +3,7 @@ package com.winning.marsx;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.winning.mars_security.core.DirectiveManager;
+import com.winning.marsx_security.core.DirectiveManager;
 
 public class MainActivity extends AppCompatActivity {
 

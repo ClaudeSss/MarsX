@@ -1,1 +1,1 @@
-include ':app', ':mars-security', ':mars-annotation', ':mars-compile'
+include ':app', ':marsx-security', ':marsx-annotation', ':marsx-compile'
