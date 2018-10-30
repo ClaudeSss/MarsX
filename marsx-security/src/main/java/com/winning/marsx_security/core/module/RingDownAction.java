@@ -19,7 +19,7 @@ public class RingDownAction implements BaseAction{
     @Override
     public void doAction(String t) {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Ringtone rt = RingtoneManager.getRingtone(DirectiveManager.getContext(), uri);
+        Ringtone rt = RingtoneManager.getRingtone(DirectiveManager.currentActivity(), uri);
         rt.play();
     }
 }

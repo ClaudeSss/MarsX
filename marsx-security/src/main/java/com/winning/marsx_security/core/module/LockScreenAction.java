@@ -15,7 +15,7 @@ import com.winning.marsx_annotation.Action;
 public class LockScreenAction implements BaseAction {
     @Override
     public void doAction(String value) {
-        if (PermisionUtils.verifyDeviceAdminPermissions(DirectiveManager.getContext())){
+        if (PermisionUtils.verifyDeviceAdminPermissions(DirectiveManager.currentActivity())){
             PermisionUtils.LockScreenNow();
         }
     }

@@ -1,5 +1,24 @@
 apply plugin: 'com.android.library'
+ext {
+    bintrayRepo = 'maven'//bintray的库名称
+    bintrayName = 'marsx-security'//bintray中填写的名字
+    publishedGroupId = 'com.winning.marsx_security'//一般为包名
+    libraryName = 'marsx-security'//本地库名称
+    artifact = "marsx-security"//同上
 
+    libraryDescription = 'marsx-security'
+    siteUrl = 'https://github.com/SharkChao/MarsX'
+    gitUrl = 'https://github.com/SharkChao/MarsX.git'
+    libraryVersion = '0.0.1'
+
+    developerId = 'SharkChao'
+    developerName = 'SharkChao'
+    developerEmail = '827623353@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 28
 
@@ -38,4 +57,8 @@ dependencies {
     //mail
     implementation 'com.sun.mail:android-mail:1.5.5'
     implementation 'com.sun.mail:android-activation:1.5.5'
+    //权限申请
+    implementation 'com.yanzhenjie:permission:2.0.0-rc12'
 }
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

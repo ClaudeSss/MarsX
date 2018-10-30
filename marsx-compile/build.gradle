@@ -1,11 +1,33 @@
 apply plugin: 'java-library'
+ext {
+    bintrayRepo = 'maven'//bintray的库名称
+    bintrayName = 'marsx-compile'//bintray中填写的名字
+    publishedGroupId = 'com.winning.marsx_compile'//一般为包名
+    libraryName = 'marsx-compile'//本地库名称
+    artifact = "marsx-compile"//同上
 
+    libraryDescription = 'marsx-compile'
+    siteUrl = 'https://github.com/SharkChao/MarsX'
+    gitUrl = 'https://github.com/SharkChao/MarsX.git'
+    libraryVersion = '0.0.1'
+
+    developerId = 'SharkChao'
+    developerName = 'SharkChao'
+    developerEmail = '827623353@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.google.auto.service:auto-service:1.0-rc3'
     compile 'com.squareup:javapoet:1.11.0'
     implementation project(':marsx-annotation')
+//    implementation 'com.winning.marsx_annotation:marsx-annotation:0.0.1'
 }
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

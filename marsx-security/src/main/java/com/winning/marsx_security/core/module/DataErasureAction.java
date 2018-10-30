@@ -15,6 +15,6 @@ import com.winning.marsx_annotation.Action;
 public class DataErasureAction implements BaseAction{
     @Override
     public void doAction(String value) {
-        DataCleanUtils.cleanApplicationData(DirectiveManager.getContext());
+        DataCleanUtils.cleanApplicationData(DirectiveManager.getApplication());
     }
 }

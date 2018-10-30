@@ -17,6 +17,6 @@ import com.winning.marsx_annotation.Action;
 public class VibrateAction implements BaseAction{
     @Override
     public void doAction(String t) {
-        TipUtils.Vibrate((Activity) DirectiveManager.getContext(),new long[]{800, 1000, 800, 1000, 800, 1000},true);
+        TipUtils.Vibrate((Activity) DirectiveManager.currentActivity(),new long[]{800, 1000, 800, 1000, 800, 1000},true);
     }
 }

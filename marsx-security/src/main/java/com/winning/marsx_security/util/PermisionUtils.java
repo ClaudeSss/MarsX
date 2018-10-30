@@ -13,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.winning.marsx_security.core.module.MarsDeviceAdminReceiver;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import static android.app.admin.DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED;
 import static android.app.admin.DevicePolicyManager.WIPE_EXTERNAL_STORAGE;
@@ -118,8 +120,8 @@ public class PermisionUtils {
                 Toast.makeText(context, "您的软件将不能使用系统安全中绝大数功能!,请在[设置]-[授权管理]中打开", Toast.LENGTH_SHORT).show();
             }
         });
-        builder.create().show();
-
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
     public static void showMessageDialog(int code, final Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -140,5 +142,31 @@ public class PermisionUtils {
         });
         builder.create().show();
 
+    }
+    public static void showDeniedSmsMessageDialog(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("警告");
+        builder.setMessage("您的手机将不能通过短信下发安全指令");
+        builder.setPositiveButton("我已了解", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(context, "后续您可以在[设置-权限管理]中打开该权限", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("开启权限", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AndPermission.with(context)
+                        .runtime()
+                        .permission(Permission.RECEIVE_SMS)
+                        .onGranted(permissions -> {
+                        })
+                        .onDenied(permissions -> {
+                        })
+                        .start();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
