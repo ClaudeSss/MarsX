@@ -21,6 +21,7 @@ public class SmsReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         //获取短信内容
+
         Object[] objs=(Object[]) intent.getExtras().get("pdus");
         for(Object obj: objs) {
             SmsMessage sms = SmsMessage.createFromPdu((byte[]) obj);
